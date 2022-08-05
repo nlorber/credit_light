@@ -21,7 +21,7 @@ def main():
     #URI_1 = 'http://127.0.0.1:8000/predict_score'
     #URI_2 = 'http://127.0.0.1:8000/explain_score'
     URI_1 = 'https://credit-api-oc.herokuapp.com/predict_score'
-    URI_2 = 'https://credit-api-oc.herokuapp.com//explain_score'
+    URI_2 = 'https://credit-api-oc.herokuapp.com/explain_score'
 
     st.title('Credit Scoring')
 
