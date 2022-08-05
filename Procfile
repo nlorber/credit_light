@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run dashboard.py
+web: echo PORT $PORT && streamlit run  --server.port $PORT dashboard.py
