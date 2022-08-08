@@ -19,10 +19,11 @@ def test():
 @app.post('/predict_score')
 def calc_score(id: SK_ID):
     data = id.dict()
-    score = model.predict_score(data['id_number']
-    )
+    score, good_idx = model.predict_score(data['id_number'])
+    print(score, good_idx)
     return {
-        'score': score
+        'score': score,
+        'index': good_idx
     }
 
 @app.post('/explain_score')

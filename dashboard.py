@@ -18,6 +18,8 @@ def request_prediction(model_uri, data):
 
 
 def main():
+    # Commentez ou decommentez une paire d'URIs parmi les deux ci-dessous,
+    # selon que vous vouliez faire tourner l'application localement ou en ligne
     #URI_1 = 'http://127.0.0.1:8000/predict_score'
     #URI_2 = 'http://127.0.0.1:8000/explain_score'
     URI_1 = 'https://credit-api-oc.herokuapp.com/predict_score'
@@ -46,8 +48,9 @@ def main():
             'id_number': id_number
         }
         
-        pred = None
-        pred = request_prediction(URI_1, data)['score']
+        request_pred = request_prediction(URI_1, data)
+        pred = request_pred['score']
+        idx = request_pred['index']
 
         if threshold_type == 'Strict': threshold = 0.547
         elif threshold_type == 'Tolérant': threshold = 0.163
@@ -55,7 +58,8 @@ def main():
 
 
         if pred == -1:
-            st.error('Désolé, ce profil n\'existe pas')
+            st.error('Désolé, ce profil n\'est pas répertorié.\
+                \nVouliez-vous dire {} ?'.format(idx))
         else:
             col1, col2, col3 = st.columns(3)
             with col1:

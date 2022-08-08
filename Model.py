@@ -27,8 +27,11 @@ class CreditModel:
         if id_number in set(self.df['SK_ID_CURR']):
             data_input = self.df[self.df['SK_ID_CURR'] == id_number][self.feats]
             score = self.model.predict_proba(data_input)[0][1]
-        else: score = -1
-        return score
+            good_idx = id_number
+        else:
+            score = -1
+            good_idx = min(self.df['SK_ID_CURR'].to_list(), key=lambda x: abs(x-id_number))
+        return score, good_idx
 
     def explanation(self, id_number):
         rank = self.df[self.df['SK_ID_CURR'] == id_number].index[0]
