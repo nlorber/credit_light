@@ -1,6 +1,6 @@
 # credit_light
 
-This is the light-dataset version of the LGBM-based scoring app, comprising 1000 individuals of the 300+ thousands of the original dataset. Unfortunately, due to file-size issues, the fullit is not deployable onto Heroku.
+This is the light-dataset version of the LGBM-based scoring app, comprising 1000 individuals of the 300+ thousands of the original dataset. Unfortunately, due to file-size issues, the full-size version of the app is not deployable onto Heroku.
 
 This version is deployed at : https://credit-web.herokuapp.com/ for the interactive dashboard and https://credit-api-oc.herokuapp.com/docs for the API.
 
