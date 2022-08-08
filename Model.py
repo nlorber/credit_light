@@ -3,7 +3,6 @@ from pydantic import BaseModel
 import joblib
 import shap
 
-
 class SK_ID(BaseModel):
     id_number: int
 
