@@ -14,7 +14,6 @@ def test():
 def calc_score(id: SK_ID):
     data = id.dict()
     score, good_idx = model.predict_score(data['id_number'])
-    print(score, good_idx)
     return {
         'score': score,
         'index': good_idx
