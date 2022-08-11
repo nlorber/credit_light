@@ -20,10 +20,10 @@ def request_prediction(model_uri, data):
 def main():
     # Commentez ou decommentez une paire d'URIs parmi les deux ci-dessous,
     # selon que vous vouliez faire tourner l'application localement ou en ligne
-    #URI_1 = 'http://127.0.0.1:8000/predict_score'
-    #URI_2 = 'http://127.0.0.1:8000/explain_score'
-    URI_1 = 'https://credit-api-oc.herokuapp.com/predict_score'
-    URI_2 = 'https://credit-api-oc.herokuapp.com/explain_score'
+    URI_1 = 'http://127.0.0.1:8000/predict_score'
+    URI_2 = 'http://127.0.0.1:8000/explain_score'
+    #URI_1 = 'https://credit-api-oc.herokuapp.com/predict_score'
+    #URI_2 = 'https://credit-api-oc.herokuapp.com/explain_score'
 
     st.title('Credit Scoring')
 
@@ -52,9 +52,9 @@ def main():
         pred = request_pred['score']
         idx = request_pred['index']
 
-        if threshold_type == 'Strict': threshold = 0.547
-        elif threshold_type == 'Tolérant': threshold = 0.163
-        else: threshold = 0.266
+        if threshold_type == 'Strict': threshold = 0.9858675212142891
+        elif threshold_type == 'Tolérant': threshold = 0.7664397179939818
+        else: threshold = 0.9605169323777106
 
 
         if pred == -1:
@@ -65,7 +65,7 @@ def main():
             with col1:
                 st.write(' ')
             with col2:
-                st.metric('Score', np.round(pred, decimals=2), delta = np.round(pred-threshold, decimals=2),
+                st.metric('Score', np.round(pred, decimals=3), delta = np.round(pred-threshold, decimals=3),
                             help='En bas : écart relatif au seuil à atteindre')
             with col3:
                 st.write(' ')
