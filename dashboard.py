@@ -20,10 +20,10 @@ def request_prediction(model_uri, data):
 def main():
     # Commentez ou decommentez une paire d'URIs parmi les deux ci-dessous,
     # selon que vous vouliez faire tourner l'application localement ou en ligne
-    URI_1 = 'http://127.0.0.1:8000/predict_score'
-    URI_2 = 'http://127.0.0.1:8000/explain_score'
-    #URI_1 = 'https://credit-api-oc.herokuapp.com/predict_score'
-    #URI_2 = 'https://credit-api-oc.herokuapp.com/explain_score'
+    #URI_1 = 'http://127.0.0.1:8000/predict_score'
+    #URI_2 = 'http://127.0.0.1:8000/explain_score'
+    URI_1 = 'https://credit-api-oc.herokuapp.com/predict_score'
+    URI_2 = 'https://credit-api-oc.herokuapp.com/explain_score'
 
     st.title('Credit Scoring')
 
