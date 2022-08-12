@@ -3,7 +3,6 @@ from pydantic import BaseModel
 import joblib
 import shap
 
-
 class SK_ID(BaseModel):
     id_number: int
 
@@ -27,8 +26,13 @@ class CreditModel:
         if id_number in set(self.df['SK_ID_CURR']):
             data_input = self.df[self.df['SK_ID_CURR'] == id_number][self.feats]
             score = self.model.predict_proba(data_input)[0][1]
-        else: score = -1
-        return score
+            good_idx = id_number
+            user_details = data_input[['CODE_GENDER', 'DAYS_BIRTH', 'DAYS_EMPLOYED', 'FLAG_OWN_CAR', 'FLAG_OWN_REALTY']]
+        else:
+            score = -1
+            good_idx = min(self.df['SK_ID_CURR'].to_list(), key=lambda x: abs(x-id_number))
+            user_details = pd.Series([0,0,0,0,0])
+        return score, good_idx, user_details
 
     def explanation(self, id_number):
         rank = self.df[self.df['SK_ID_CURR'] == id_number].index[0]
