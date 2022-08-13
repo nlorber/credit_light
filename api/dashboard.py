@@ -63,7 +63,6 @@ def main():
         idx = request_pred['index']
         user_details = request_pred['details']
 
-
         if threshold_type == 'Strict': threshold = 0.9858675212142891
         elif threshold_type == 'Tolérant': threshold = 0.7664397179939818
         else: threshold = 0.9605169323777106
@@ -77,33 +76,34 @@ def main():
                 \nVouliez-vous dire {} ?'.format(idx))
 
         else:
-
+            
             if user_details[0] == 0: genre = 'un homme'
             elif user_details[0] == 1: genre = 'une femme'
-            else: genre = 'Value error'
-            age = int((-user_details[1])//365.25)
-            if user_details[2] == 0: job = 'sans emploi'
-            else:
-                job = 'occupant un emploi depuis {:.2f} ans'.format((-user_details[2])/365.25)
+            else: genre = 'gender=Value error'
+            if user_details[1] == 'missing_value': age = 'age=Value error'
+            else: age = int((-user_details[1])//365.25)
+            if user_details[2] == 'missing_value': job = 'job=Value error'
+            elif user_details[2] == 0: job = 'sans emploi'
+            else: job = 'occupant un emploi depuis {:.2f} ans'.format((-user_details[2])/365.25)
             if user_details[3] == 1:
                 car = 'Possède une voiture '
                 if user_details [4] == 0: immo = 'et une propriété immmobilière'
                 elif user_details [4] == 1: immo = 'mais pas d\'immmobilier'
-                else: immo = 'Value error'
+                else: immo = 'real estate=Value error'
             elif user_details[3] == 0:
                 car = 'Ne possède pas de voiture '
                 if user_details [4] == 0: immo = 'mais possède une propriété immmobilière'
                 elif user_details [4] == 1: immo = 'ni d\'immmobilier'
-                else: immo = 'Value error'
+                else: immo = 'real estate=Value error'
             else:
-                car = 'Value error.'
+                car = 'car=Value error.'
                 if user_details [4] == 0:
                     immo = 'Possède une propriété immmobilière'
                 elif user_details [4] == 1: immo = 'Ne possède pas d\'immmobilier'
-                else: immo = 'Value error'
+                else: immo = 'real estate=Value error'
 
             st.write('Profil utilisateur : le client numéro {} est {} de {} ans, {}. {} {}.'.format(id_number, genre, age, job, car, immo))
-
+            
             col1, col2, col3 = st.columns(3)
             with col1:
                 st.write(' ')

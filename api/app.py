@@ -14,10 +14,11 @@ def test():
 def calc_score(id: SK_ID):
     data = id.dict()
     score, good_idx, details = model.predict_score(data['id_number'])
+    print(score, good_idx, details)
     return {
         'score': score,
         'index': good_idx,
-        'details': details.values.tolist()[0]
+        'details': pd.Series(details.values.reshape(-1)).fillna('missing_value').tolist()
     }
 
 @app.post('/explain_score')
